@@ -1,5 +1,8 @@
 package DAO;
 
+import com.pluralsight.dealership.SalesContract;
+import com.pluralsight.dealership.Vehicle;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ public class SalesContractDAO {
              PreparedStatement stmt = connection.prepareStatement(query)) {
 
             stmt.setString(1, contract.getVin());
-            stmt.setDate(2, contract.getSaleDate());
+            stmt.setDate(2, contract.getSaleDate());  // Assuming it's a java.sql.Date
             stmt.setDouble(3, contract.getSalePrice());
             stmt.setString(4, contract.getCustomerName());
 
@@ -40,11 +43,11 @@ public class SalesContractDAO {
 
             while (rs.next()) {
                 SalesContract contract = new SalesContract(
-                        rs.getInt("id"),
-                        rs.getString("vin"),
-                        rs.getDate("sale_date"),
-                        rs.getDouble("sale_price"),
-                        rs.getString("customer_name")
+                        rs.getString("sale_date"),
+                        rs.getString("customer_name"),
+                        rs.getString("customer_email"),
+                        new Vehicle(rs.getString("vin"), rs.getString("vehicle_model")),
+                        rs.getString("financing_option")
                 );
                 contracts.add(contract);
             }

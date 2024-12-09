@@ -1,5 +1,7 @@
 package DAO;
 
+import com.pluralsight.dealership.Vehicle;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

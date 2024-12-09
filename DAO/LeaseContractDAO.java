@@ -1,5 +1,8 @@
 package DAO;
 
+import com.pluralsight.dealership.LeaseContract;
+import com.pluralsight.dealership.Vehicle;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +11,7 @@ public class LeaseContractDAO {
 
     private static final String URL = "jdbc:mysql://localhost:3306/dealership";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "your_password"; // Change to your MySQL password
+    private static final String PASSWORD = "yearup"; // Change to your MySQL password
 
     // Create a new lease contract
     public void createLeaseContract(LeaseContract contract) {
@@ -17,10 +20,11 @@ public class LeaseContractDAO {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement stmt = connection.prepareStatement(query)) {
 
-            stmt.setString(1, contract.getVin());
-            stmt.setDate(2, contract.getLeaseStart());
-            stmt.setDate(3, contract.getLeaseEnd());
-            stmt.setDouble(4, contract.getLeasePrice());
+            // Set values for the lease contract
+            stmt.setString(1, contract.getVehicleSold().getVin());
+            stmt.setDate(2, Date.valueOf(contract.getDate()));  // Assuming 'date' is a String, you can convert it to Date
+            stmt.setDate(3, Date.valueOf(contract.getDate()));  // Assuming 'date' is a String, you can convert it to Date
+            stmt.setDouble(4, contract.getTotalPrice());
             stmt.setString(5, contract.getCustomerName());
 
             stmt.executeUpdate();
@@ -41,12 +45,10 @@ public class LeaseContractDAO {
 
             while (rs.next()) {
                 LeaseContract contract = new LeaseContract(
-                        rs.getInt("id"),
-                        rs.getString("vin"),
-                        rs.getDate("lease_start"),
-                        rs.getDate("lease_end"),
-                        rs.getDouble("lease_price"),
-                        rs.getString("customer_name")
+                        rs.getString("date"), // Assuming this is the contract date
+                        rs.getString("customer_name"),  // Customer's name
+                        rs.getString("customer_email"),  // Assuming there's an email in the DB as well
+                        new Vehicle(rs.getString("vin"), rs.getString("model"))  // Assuming Vehicle is a class that takes vin and model
                 );
                 contracts.add(contract);
             }

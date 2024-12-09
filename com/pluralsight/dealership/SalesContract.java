@@ -22,13 +22,9 @@ public class SalesContract extends Contract {
         this.monthlyPayment = calculateMonthlyPayment();
     }
 
-
-
     private double calculateSalesTax() {
         return getVehicleSold().getPrice() * SalesTaxRate;
     }
-
-
 
     private double calculateProcessingFee() {
         if (getVehicleSold().getPrice() < 50000) {
@@ -38,12 +34,9 @@ public class SalesContract extends Contract {
         }
     }
 
-
-
     private double calculateTotalPrice() {
         return getVehicleSold().getPrice() + salesTaxAmount + RecordingFee + processingFee;
     }
-
 
     // Calculate monthly payment based on financing option
     private double calculateMonthlyPayment() {
@@ -56,9 +49,20 @@ public class SalesContract extends Contract {
         return 0.0; // No financing means no monthly payment
     }
 
-
-
     // Getters
+    public String getVin() {
+        return getVehicleSold().getVin();
+    }
+
+    public java.sql.Date getSaleDate() {
+        // Assuming 'date' is stored in 'Contract' as a String, convert it to SQL Date
+        return java.sql.Date.valueOf(getDate());
+    }
+
+    public double getSalePrice() {
+        return getVehicleSold().getPrice();
+    }
+
     public double getSalesTaxAmount() {
         return salesTaxAmount;
     }
@@ -70,23 +74,18 @@ public class SalesContract extends Contract {
     public double getProcessingFee() {
         return processingFee;
     }
+
     public boolean isFinanced() {
         return "YES".equalsIgnoreCase(financingOption);
     }
-
 
     @Override
     public double getTotalPrice() {
         return totalPrice;
     }
 
-
     @Override
     public double getMonthlyPayment() {
         return monthlyPayment;
     }
-
-
 }
-
-

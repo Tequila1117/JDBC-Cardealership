@@ -1,5 +1,7 @@
 package DAO;
 
+import com.pluralsight.dealership.Dealership;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +91,7 @@ public class DealershipDAO {
             stmt.setString(1, dealership.getName());
             stmt.setString(2, dealership.getAddress());
             stmt.setString(3, dealership.getPhone());
-            stmt.setInt(4, dealership.getDealershipId());
+            stmt.setInt(4, dealership.getId());
 
             stmt.executeUpdate();
             System.out.println("Dealership updated successfully!");

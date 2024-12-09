@@ -20,6 +20,12 @@ public class Vehicle {
         this.sold = sold;
     }
 
+    public Vehicle(String vin, String model) {
+
+    }
+
+
+
     // Getters and Setters
     public String getVin() {
         return vin;

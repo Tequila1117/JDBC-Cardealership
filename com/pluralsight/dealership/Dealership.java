@@ -16,11 +16,11 @@ public class Dealership {
     }
 
     // Getters and Setters
-    public int Id() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(int dId) {
+    public void setId(int Id) {
         this.Id = Id;
     }
 
@@ -47,4 +47,6 @@ public class Dealership {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+
 }
