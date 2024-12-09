@@ -5,13 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ContractDataManager {
-    private final String contractsFilePath = "src/main/resources/contracts.csv"; // File path for stored contracts
 
-    // Saves a contract to the contracts file
+
+
     //  The contract to save (SalesContract or LeaseContract)
     // IOException If there's an issue with file writing
     public void saveContract(Contract contract) throws IOException {
         // BufferedWriter to append to the contracts file
+        String contractsFilePath = null;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(contractsFilePath, true))) {
             if (contract instanceof SalesContract) {
                 SalesContract salesContract = (SalesContract) contract; // Cast to SalesContract

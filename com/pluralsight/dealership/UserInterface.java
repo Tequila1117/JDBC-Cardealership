@@ -51,8 +51,6 @@ public class UserInterface {
                     ║ All                                (7)   ║
                     ║ Add a vehicle                      (8)   ║
                     ║ Remove a vehicle                   (9)   ║
-                    ║ Record a Sale║                    (10)   ║
-                    ║ Record a Lease                    (11)   ║
                     ║ Quit                               (99)  ║
                     ╚══════════════════════════════════════════╝%n""");
             // Read the user's choice

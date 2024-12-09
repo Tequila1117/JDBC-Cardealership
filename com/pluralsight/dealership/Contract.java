@@ -12,10 +12,11 @@ public class Contract {
 
     //Constructor to initialize contract fields
 
-    public Contract(String date, String customerName, String customerEmail, Vehicle vehicle) {
+    public Contract(String date, String customerName, String customerEmail, Vehicle vehicle ) {
         this.date = date;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
+
         this.vehicleSold = vehicle;
     }
 
